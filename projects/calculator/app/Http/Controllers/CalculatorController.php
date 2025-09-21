@@ -2,37 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class CalculatorController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         return view('calculator');
     }
 
-    public function calculate(Request $request)
-    {
-        $validated = $request->validate([
+    public function calculate(Request $request){
+
+        $validate = $request->validate([
             'number1' => 'required|numeric',
             'number2' => 'required|numeric',
-            'operator' => 'required|in:add,sub,mul,div'
+            'operator' => 'required|in:add,sub,mul,div',
+
         ]);
 
-        $result = match ($validated['operator']) {
-            'add' => $validated['number1'] + $validated['number2'],
-            'sub' => $validated['number1'] - $validated['number2'],
-            'mul' => $validated['number1'] * $validated['number2'],
-            'div' => $validated['number2'] != 0 
-                        ? ($validated['number1'] / $validated['number2']) 
-                        : 'Error: Division by 0',
+        $result = match ($validate['operator']){
+            'add' => $validate['number1'] + $validate['number2'],
+            'sub' => $validate['number1'] - $validate['number2'],
+            'mul' => $validate['number1'] * $validate['number2'],
+            'div' => $validate['number2'] != 0 ? ($validate['number1'] / $validate['number2']) : 'error division by 0'
         };
 
-        return view('calculator', [
+        return view('calculator',[
             'result' => $result,
-            'number1' => $validated['number1'],
-            'number2' => $validated['number2'],
-            'operator' => $validated['operator']
+            'number1' => $validate['number1'],
+            'number2' => $validate['number2'],
+            'operator' => $validate['operator'],
+
         ]);
     }
 }
