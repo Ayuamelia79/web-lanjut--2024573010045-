@@ -1,7 +1,7 @@
 # Laporan Modul 1: Perkenalan Laravel  
 **Mata Kuliah:** Workshop Web Lanjut  
-**Nama:** Muhammad Dhiyaul Atha  
-**NIM:** 2024573010075  
+**Nama:** Ayu Amelia
+**NIM:** 2024573010045
 **Kelas:** TI 2B  
 
 ---
